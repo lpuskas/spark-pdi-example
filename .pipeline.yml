@@ -1,21 +1,11 @@
 pipeline:
   create_cluster:
-    image: banzaicloud/pipeline-client:0.1.0
+    image: banzaicloud/pipeline-client:latest
     log_level: info
     log_format: text
 
-    cluster_name: "spark-pdi-cluster"
-    cluster_location: "eu-west-1"
-    cluster_state: "created"
-
-    node_image: ami-294ffd50
-    node_instance_type: m4.xlarge
-    node_spot_price: 0.2
-    node_min_count: 1
-    node_max_count: 2
-
-    master_image: ami-294ffd50
-    master_instance_type: m4.xlarge
+    cluster_name: "lp-pdi-cluster"
+    cluster_provider: amazon
 
     deployment_name: "pipeline-cluster-monitor"
     deployment_release_name: "monitor"
@@ -24,47 +14,32 @@ pipeline:
     secrets: [ plugin_endpoint, plugin_username, plugin_password]
 
   remote_checkout:
-    image: banzaicloud/k8s-proxy:0.1.0
+    image: banzaicloud/plugin-k8s-proxy:latest
     original_image: plugins/git
 
   remote_build:
-    image: banzaicloud/k8s-proxy:0.1.0
+    image: banzaicloud/plugin-k8s-proxy:latest
     original_image: denvazh/scala:2.11.8
     original_commands:
       - sbt clean package
 
   prepare_spark_deps:
-    image: banzaicloud/pipeline-client:0.1.0
+    image: banzaicloud/pipeline-client:latest
     log_level: info
     log_format: text
-
-    cluster_name: "spark-pdi-cluster"
-    cluster_location: "eu-west-1"
-    cluster_state: "created"
-
-    node_image: ami-294ffd50
-    node_instance_type: m4.xlarge
-    node_spot_price: 0.2
-    node_min_count: 1
-    node_max_count: 2
-
-    master_image: ami-294ffd50
-    master_instance_type: m4.xlarge
 
     deployment_name: "spark"
     deployment_release_name: "spark"
     deployment_state: "created"
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+    
+  install_spark_history_server:
+    image: banzaicloud/plugin-pipeline-client:latest
 
-    install_spark_history_server:
-      image: banzaicloud/plugin-pipeline-client:dev-e09a0b4
-
-      deployment_name: "spark-hs"
-      deployment_release_name: "spark-hs"
-      deployment_values:
-        app:
+    deployment_name: "spark-hs"
+    deployment_release_name: "spark-hs"
+    deployment_values:
+      app:
           logDirectory: s3a://spark-k8-logs/eventLog"
-      secrets: [ plugin_endpoint, plugin_username, plugin_password]    
 
   run:
     image: banzaicloud/k8s-proxy:0.1.0
