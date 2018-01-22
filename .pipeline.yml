@@ -41,7 +41,7 @@ pipeline:
     deployment_release_name: "spark-hs"
     deployment_values:
       app:
-          logDirectory: s3a://spark-k8-logs/eventLog"
+          logDirectory: "s3a://spark-k8-logs/eventLog"
           
     secrets: [ plugin_endpoint, plugin_username, plugin_password]
 
