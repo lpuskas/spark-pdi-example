@@ -32,6 +32,8 @@ pipeline:
     deployment_release_name: "spark"
     deployment_state: "created"
     
+    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+    
   install_spark_history_server:
     image: banzaicloud/plugin-pipeline-client:latest
 
@@ -40,6 +42,8 @@ pipeline:
     deployment_values:
       app:
           logDirectory: s3a://spark-k8-logs/eventLog"
+          
+     secrets: [ plugin_endpoint, plugin_username, plugin_password]
 
   run:
     image: banzaicloud/k8s-proxy:0.1.0
