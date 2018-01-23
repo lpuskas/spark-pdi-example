@@ -46,7 +46,7 @@ pipeline:
     secrets: [ plugin_endpoint, plugin_username, plugin_password]
 
   run:
-    image: banzaicloud/k8s-proxy:0.1.0
+    image: banzaicloud/plugin-k8s-proxy:latest
     original_image: banzaicloud/spark-submit-k8s:0.1.0
     pod_service_account: spark
     pull: true
@@ -56,9 +56,9 @@ pipeline:
     spark_kubernetes_namespace: default
     spark_app_name: SFPDIncidents
     spark_local_dir: /tmp/spark-local
-    spark_kubernetes_driver_docker_image: banzaicloud/spark-driver:v2.2.0-k8s-1.0.179
-    spark_kubernetes_executor_docker_image: banzaicloud/spark-executor:v2.2.0-k8s-1.0.179
-    spark_kubernetes_initcontainer_docker_image: banzaicloud/spark-init:v2.2.0-k8s-1.0.179
+    spark_kubernetes_driver_docker_image: banzaicloud/spark-driver:v2.2.0-k8s-1.0.197
+    spark_kubernetes_executor_docker_image: banzaicloud/spark-executor:v2.2.0-k8s-1.0.197
+    spark_kubernetes_initcontainer_docker_image: banzaicloud/spark-init:v2.2.0-k8s-1.0.197
     spark_dynamic_allocation: true
     spark_kubernetes_resourcestagingserver_uri: http://spark-rss:10000
     spark_kubernetes_resourcestagingserver_internal_uri: http://spark-rss:10000
