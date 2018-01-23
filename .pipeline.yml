@@ -26,28 +26,6 @@ pipeline:
     original_commands:
       - sbt clean package
 
-  prepare_spark_deps:
-    image: banzaicloud/plugin-pipeline-client:latest
-    log_level: info
-    log_format: text
-
-    deployment_name: "spark"
-    deployment_release_name: "spark"
-    deployment_state: "created"
-    
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
-    
-  install_spark_history_server:
-    image: banzaicloud/plugin-pipeline-client:latest
-
-    deployment_name: "spark-hs"
-    deployment_release_name: "spark-hs"
-    deployment_values:
-      app:
-          logDirectory: "s3a://spark-k8-logs/eventLog"
-          
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
-
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
     original_image: banzaicloud/spark-submit-k8s:0.1.0
