@@ -4,7 +4,7 @@ pipeline:
     log_level: info
     log_format: text
 
-    cluster_name: "lp-pdi-cluster"
+    cluster_name: "lp-vacskamati"
     cluster_provider: amazon
 
     deployment_name: "pipeline-cluster-monitor"
