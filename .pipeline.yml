@@ -1,17 +1,20 @@
 pipeline:
   create_cluster:
     image: banzaicloud/plugin-pipeline-client:latest
-    log_level: info
-    log_format: text
-
-    cluster_name: "lp-vacskamati"
+# AWS
+    cluster_name: "lp-pdi-01"
     cluster_provider: amazon
+# If you want to start cluster on Azure Cloud
+# Change cluster_provider to "azure" and setting up "azure_resource_group"
+# https://docs.microsoft.com/en-us/azure/azure-resource-manager/xplat-cli-azure-resource-manager
+#    azure_resource_group: "gaborg"
 
+# Please set up these secrets on the CI/CD ui
+    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+ 
     deployment_name: "pipeline-cluster-monitor"
     deployment_release_name: "monitor"
-    deployment_state: "created"
-
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+    deployment_state: "created" 
 
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
