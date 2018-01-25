@@ -2,7 +2,7 @@ pipeline:
   create_cluster:
     image: banzaicloud/plugin-pipeline-client:latest
 # AWS
-    cluster_name: "lp-pdi-02"
+    cluster_name: "lp-tc-03"
     cluster_provider: amazon
 # If you want to start cluster on Azure Cloud
 # Change cluster_provider to "azure" and setting up "azure_resource_group"
