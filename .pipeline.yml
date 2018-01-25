@@ -50,7 +50,7 @@ pipeline:
 
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
-    original_image: banzaicloud/spark-submit-k8s:0.1.0
+    original_image: banzaicloud/plugin-spark-submit-k8s:dev-e1886e8
     pod_service_account: spark
     pull: true
     spark_deploy_mode: cluster
@@ -72,14 +72,9 @@ pipeline:
     spark_metrics_conf: /opt/spark/conf/metrics.properties
     spark.eventLog.dir: "s3a://spark-k8-logs/eventLog"
     spark.eventLog.enabled: true
-    spark_packages: >
-        org.apache.hadoop:hadoop-aws:2.7.2,
-        com.amazonaws:aws-java-sdk:1.7.4,
-        com.typesafe.scala-logging:scala-logging_2.11:3.1.0,
-        ch.qos.logback:logback-classic:1.1.2
-    spark_exclude_packages: >
-        com.fasterxml.jackson.core:jackson-databind,
-        com.fasterxml.jackson.core:jackson-annotations,
-        com.fasterxml.jackson.core:jackson-core
+    spark_packages: org.apache.hadoop:hadoop-aws:2.7.2,com.amazonaws:aws-java-sdk:1.7.4,com.typesafe.scala-logging:scala-logging_2.11:3.1.0,ch.qos.logback:logback-classic:1.1.2
+    spark_exclude_packages: com.fasterxml.jackson.core:jackson-databind,com.fasterxml.jackson.core:jackson-annotations,com.fasterxml.jackson.core:jackson-core
     spark_app_source: target/scala-2.11/sf-police-incidents_2.11-0.1.jar
     spark_app_args: --dataPath s3a://lp-deps-test/data/Police_Department_Incidents.csv
+    
+    
