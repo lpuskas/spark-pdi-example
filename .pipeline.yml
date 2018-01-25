@@ -12,7 +12,7 @@ pipeline:
 # Please set up these secrets on the CI/CD ui
     secrets: [ plugin_endpoint, plugin_username, plugin_password]
  
-    deployment_name: "pipeline-cluster-monitor"
+    deployment_name: "banzaicloud-stable/pipeline-cluster-monitor"
     deployment_release_name: "monitor"
     deployment_state: "created" 
 
@@ -31,7 +31,7 @@ pipeline:
     log_level: info
     log_format: text
 
-    deployment_name: "spark"
+    deployment_name: "banzaicloud-stable/spark"
     deployment_release_name: "spark"
     deployment_state: "created"
     
@@ -40,7 +40,7 @@ pipeline:
   install_spark_history_server:
     image: banzaicloud/plugin-pipeline-client:latest
 
-    deployment_name: "spark-hs"
+    deployment_name: "banzaicloud-stable/spark-hs"
     deployment_release_name: "spark-hs"
     deployment_values:
       app:
