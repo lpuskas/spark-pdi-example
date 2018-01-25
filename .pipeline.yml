@@ -50,7 +50,7 @@ pipeline:
 
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
-    original_image: banzaicloud/plugin-spark-submit-k8s:dev-pl
+    original_image: banzaicloud/plugin-spark-submit-k8s:dev-pl-01
     pod_service_account: spark
     pull: true
     spark_deploy_mode: cluster
