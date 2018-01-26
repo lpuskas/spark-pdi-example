@@ -4,6 +4,7 @@ pipeline:
 # AWS
     cluster_name: "lppdi011"
     cluster_provider: "azure"
+    cluster_location: "eastus"
 # If you want to start cluster on Azure Cloud
 # Change cluster_provider to "azure" and setting up "azure_resource_group"
 # https://docs.microsoft.com/en-us/azure/azure-resource-manager/xplat-cli-azure-resource-manager
