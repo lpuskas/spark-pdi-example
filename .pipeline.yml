@@ -3,7 +3,7 @@ pipeline:
     image: banzaicloud/plugin-pipeline-client:latest
 # AWS
     cluster_name: "lppdi01"
-    cluster_provider: amazon
+    cluster_provider: azure
 # If you want to start cluster on Azure Cloud
 # Change cluster_provider to "azure" and setting up "azure_resource_group"
 # https://docs.microsoft.com/en-us/azure/azure-resource-manager/xplat-cli-azure-resource-manager
