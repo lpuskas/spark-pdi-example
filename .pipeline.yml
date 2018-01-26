@@ -10,7 +10,7 @@ pipeline:
     azure_resource_group: "puski_eastus"
 
 # Please set up these secrets on the CI/CD ui
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+    secrets: [plugin_endpoint, plugin_username, plugin_password]
  
     deployment_name: "banzaicloud-stable/pipeline-cluster-monitor"
     deployment_release_name: "monitor"
@@ -46,7 +46,7 @@ pipeline:
       app:
           logDirectory: "s3a://spark-k8-logs/eventLog"
           
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+    secrets: [plugin_endpoint, plugin_username, plugin_password]
 
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
