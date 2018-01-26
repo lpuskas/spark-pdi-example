@@ -2,12 +2,12 @@ pipeline:
   create_cluster:
     image: banzaicloud/plugin-pipeline-client:latest
 # AWS
-    cluster_name: "lp-tc-03"
+    cluster_name: "lp-pdi-01"
     cluster_provider: amazon
 # If you want to start cluster on Azure Cloud
 # Change cluster_provider to "azure" and setting up "azure_resource_group"
 # https://docs.microsoft.com/en-us/azure/azure-resource-manager/xplat-cli-azure-resource-manager
-#    azure_resource_group: "gaborg"
+    azure_resource_group: "puski_eastus"
 
 # Please set up these secrets on the CI/CD ui
     secrets: [ plugin_endpoint, plugin_username, plugin_password]
@@ -50,7 +50,7 @@ pipeline:
 
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
-    original_image: banzaicloud/plugin-spark-submit-k8s:dev-pl-01
+    original_image: banzaicloud/plugin-spark-submit-k8s:latest
     pod_service_account: spark
     pull: true
     spark_deploy_mode: cluster
@@ -70,7 +70,7 @@ pipeline:
     spark_kubernetes_shuffle_labels: "app=spark-shuffle-service,spark-version=2.2.0"
     spark_kubernetes_authenticate_driver_serviceaccount_name: "spark"
     spark_metrics_conf: /opt/spark/conf/metrics.properties
-    spark_eventLog_dir: "s3a://spark-k8-logs/eventLog"
+    spark_eventLog_dir: "wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
     spark_eventLog_enabled: true
     spark_packages: org.apache.hadoop:hadoop-aws:2.7.2,com.amazonaws:aws-java-sdk:1.7.4,com.typesafe.scala-logging:scala-logging_2.11:3.1.0,ch.qos.logback:logback-classic:1.1.2
     spark_exclude_packages: com.fasterxml.jackson.core:jackson-databind,com.fasterxml.jackson.core:jackson-annotations,com.fasterxml.jackson.core:jackson-core
