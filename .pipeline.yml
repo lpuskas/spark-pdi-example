@@ -1,6 +1,6 @@
 pipeline:
   create_cluster:
-    image: banzaicloud/plugin-pipeline-client:pl2
+    image: banzaicloud/plugin-pipeline-client:pl3
 # AWS
     cluster_name: "lppdi02"
     cluster_provider: "azure"
@@ -17,7 +17,7 @@ pipeline:
     deployment_release_name: "monitor"
 
   install_spark_history_server:
-    image: banzaicloud/plugin-pipeline-client:pl2
+    image: banzaicloud/plugin-pipeline-client:pl3
 
     deployment_name: "banzaicloud-stable/spark-hs"
     deployment_release_name: "historyserver"
