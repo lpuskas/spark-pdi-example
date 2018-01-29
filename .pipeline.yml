@@ -25,8 +25,9 @@ pipeline:
     deployment_values:
       app:
         logDirectory="wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
+        secrets: [plugin_azure_storage_account, plugin_azure_storage_account_access_key]
           
-      secrets: [plugin_endpoint, plugin_username, plugin_password, plugin_azure_storage_account, plugin_azure_storage_account_access_key]
+    secrets: [plugin_endpoint, plugin_username, plugin_password]
 
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
