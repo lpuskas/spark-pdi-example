@@ -45,10 +45,9 @@ pipeline:
     deployment_release_name: "spark-hs"
     deployment_values:
       app:
-          # logDirectory: "s3a://spark-k8-logs/eventLog"
           logDirectory="wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
           
-    secrets: [plugin_endpoint, plugin_username, plugin_password]
+    secrets: [plugin_endpoint, plugin_username, plugin_password, plugin_azure_storage_account, plugin_azure_storage_account_access_key]
 
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
