@@ -27,6 +27,8 @@ pipeline:
         logDirectory: "wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
         azure_storage_account: "{{ .PLUGIN_AZURE_STORAGE_ACCOUNT }}"
         azure_storage_account_access_key: "{{ .PLUGIN_AZURE_STORAGE_ACCOUNT_ACCESS_KEY }}"
+    
+    secrets: [plugin_endpoint, plugin_username, plugin_password, plugin_azure_storage_account, plugin_azure_storage_account_access_key]
 
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
