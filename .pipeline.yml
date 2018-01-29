@@ -17,6 +17,17 @@ pipeline:
     deployment_release_name: "monitor"
     deployment_state: "created" 
 
+  install_spark_history_server:
+    image: banzaicloud/plugin-pipeline-client:latest
+
+    deployment_name: "banzaicloud-stable/spark-hs"
+    deployment_release_name: "historyserver"
+    deployment_values:
+      app:
+        logDirectory="wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
+          
+    secrets: [plugin_endpoint, plugin_username, plugin_password, plugin_azure_storage_account, plugin_azure_storage_account_access_key]
+
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
     original_image: plugins/git
@@ -38,17 +49,6 @@ pipeline:
     
     secrets: [plugin_endpoint, plugin_username, plugin_password]
     
-  install_spark_history_server:
-    image: banzaicloud/plugin-pipeline-client:latest
-
-    deployment_name: "banzaicloud-stable/spark-hs"
-    deployment_release_name: "historyserver"
-    deployment_values:
-      app:
-          logDirectory="wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
-          
-    secrets: [plugin_endpoint, plugin_username, plugin_password, plugin_azure_storage_account, plugin_azure_storage_account_access_key]
-
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
     original_image: banzaicloud/plugin-spark-submit-k8s:latest
