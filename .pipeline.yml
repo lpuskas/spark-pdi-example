@@ -1,6 +1,6 @@
 pipeline:
   create_cluster:
-    image: banzaicloud/plugin-pipeline-client:latest
+    image: banzaicloud/plugin-pipeline-client:dev-988dbda
 # AWS
     cluster_name: "lppdi02"
     cluster_provider: "azure"
@@ -18,16 +18,15 @@ pipeline:
     deployment_state: "created" 
 
   install_spark_history_server:
-    image: banzaicloud/plugin-pipeline-client:latest
+    image: banzaicloud/plugin-pipeline-client:dev-988dbda
 
     deployment_name: "banzaicloud-stable/spark-hs"
     deployment_release_name: "historyserver"
     deployment_values:
       app:
         logDirectory: "wasb://spark-k8-logs@sparklogstore.blob.core.windows.net/eventLog"
-        secrets: [plugin_endpoint, plugin_username, plugin_password,plugin_azure_storage_account, plugin_azure_storage_account_access_key]
-          
-    secrets: [plugin_endpoint, plugin_username, plugin_password,plugin_azure_storage_account, plugin_azure_storage_account_access_key]
+        azure_storage_account: "{{ .PLUGIN_AZURE_STORAGE_ACCOUNT }}"
+        azure_storage_account_access_key: "{{ .PLUGIN_AZURE_STORAGE_ACCOUNT_ACCESS_KEY }}"
 
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:latest
@@ -48,7 +47,6 @@ pipeline:
     deployment_release_name: "spark"
     deployment_state: "created"
     
-    secrets: [plugin_endpoint, plugin_username, plugin_password]
     
   run:
     image: banzaicloud/plugin-k8s-proxy:latest
