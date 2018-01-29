@@ -36,7 +36,7 @@ pipeline:
     deployment_release_name: "spark"
     deployment_state: "created"
     
-    secrets: [ plugin_endpoint, plugin_username, plugin_password]
+    secrets: [plugin_endpoint, plugin_username, plugin_password]
     
   install_spark_history_server:
     image: banzaicloud/plugin-pipeline-client:latest
