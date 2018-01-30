@@ -24,8 +24,8 @@ pipeline:
     deployment_values:
       app:
         logDirectory: "wasb://spark-k8-logs@{{ .AZURE_STORAGE_ACCOUNT }}.blob.core.windows.net/eventLog"
-        azure_storage_account: "{{ .AZURE_STORAGE_ACCOUNT }}"
-        azure_storage_account_access_key: "{{ .AZURE_STORAGE_ACCOUNT_ACCESS_KEY }}"
+        azureStorageAccessKey: "{{ .AZURE_STORAGE_ACCOUNT }}"
+        azureStorageAccountName: "{{ .AZURE_STORAGE_ACCOUNT_ACCESS_KEY }}"
     
     secrets: [endpoint, username, password, azure_storage_account, azure_storage_account_access_key]
 
