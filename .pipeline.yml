@@ -8,10 +8,10 @@ pipeline:
 # If you want to start cluster on Azure Cloud
 # Change cluster_provider to "azure" and setting up "azure_resource_group"
 # https://docs.microsoft.com/en-us/azure/azure-resource-manager/xplat-cli-azure-resource-manager
-    azure_resource_group: "puski_eastus"
+    azure_resource_group: "pl_eastus"
 
 # Please set up these secrets on the CI/CD ui
-    secrets: [plugin_endpoint, plugin_username, plugin_password]
+    secrets: [endpoint, username, password]
  
     deployment_name: "banzaicloud-stable/pipeline-cluster-monitor"
     deployment_release_name: "monitor"
@@ -27,7 +27,7 @@ pipeline:
         azure_storage_account: "{{ .PLUGIN_AZURE_STORAGE_ACCOUNT }}"
         azure_storage_account_access_key: "{{ .PLUGIN_AZURE_STORAGE_ACCOUNT_ACCESS_KEY }}"
     
-    secrets: [plugin_endpoint, plugin_username, plugin_password, plugin_azure_storage_account, plugin_azure_storage_account_access_key]
+    secrets: [endpoint, username, password, azure_storage_account, azure_storage_account_access_key]
 
   remote_checkout:
     image: banzaicloud/plugin-k8s-proxy:0.2.0
