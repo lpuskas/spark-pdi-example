@@ -46,9 +46,9 @@ pipeline:
 
     deployment_name: "banzaicloud-stable/spark"
     deployment_release_name: "spark"
-    deployment_state: "created"
-    
-    
+
+    secrets: [endpoint, username, password]
+        
   run:
     image: banzaicloud/plugin-k8s-proxy:0.2.0
     original_image: banzaicloud/plugin-spark-submit-k8s:0.2.0
