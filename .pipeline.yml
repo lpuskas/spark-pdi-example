@@ -76,7 +76,7 @@ pipeline:
     spark_packages: org.apache.hadoop:hadoop-aws:2.7.2,com.amazonaws:aws-java-sdk:1.7.4,com.typesafe.scala-logging:scala-logging_2.11:3.1.0,ch.qos.logback:logback-classic:1.1.2
     spark_exclude_packages: com.fasterxml.jackson.core:jackson-databind,com.fasterxml.jackson.core:jackson-annotations,com.fasterxml.jackson.core:jackson-core
     spark_app_source: target/scala-2.11/sf-police-incidents_2.11-0.1.jar
-    spark_app_args: --dataPath s3a://lp-deps-test/data/Police_Department_Incidents.csv
+    spark_app_args: --dataPath wasb://pdidata@sparklogstore.blob.core.windows.net/Police_Department_Incidents.csv
     
     secrets: [plugin_azure_storage_account, plugin_azure_storage_account_access_key]
    
