@@ -17,7 +17,7 @@ pipeline:
     deployment_release_name: "monitor"
 
   install_spark_history_server:
-    image: banzaicloud/plugin-pipeline-client:lp01
+    image: banzaicloud/plugin-pipeline-client:lp02
 
     deployment_name: "banzaicloud-stable/spark-hs"
     deployment_release_name: "historyserver"
@@ -40,7 +40,7 @@ pipeline:
       - sbt clean package
 
   prepare_spark_deps:
-    image: banzaicloud/plugin-pipeline-client:lp01
+    image: banzaicloud/plugin-pipeline-client:lp02
     log_level: info
     log_format: text
 
