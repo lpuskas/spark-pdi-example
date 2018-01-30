@@ -78,7 +78,7 @@ pipeline:
     spark_app_source: target/scala-2.11/sf-police-incidents_2.11-0.1.jar
     spark_app_args: --dataPath s3a://lp-deps-test/data/Police_Department_Incidents.csv
     
-    secrets: [azure_storage_account, azure_storage_account_access_key]
+    secrets: [plugin_azure_storage_account, plugin_azure_storage_account_access_key]
    
 
 
