@@ -73,4 +73,4 @@ pipeline:
       spark.eventLog.dir: "gs://puski-testing/data"
     spark_submit_app_args:
       - target/scala-2.11/sf-police-incidents_2.11-0.1.jar
-      - --dataPath wasb://pdidata@sparklogstore.blob.core.windows.net/Police_Department_Incidents.csv
+      - --dataPath "gs://puski-testing/pdidata/Police_Department_Incidents.csv"
